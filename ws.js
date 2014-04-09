@@ -1,6 +1,10 @@
 Players = new Meteor.Collection('players');
 
 if (Meteor.isClient) {
+  var STROKE_WIDTH = 4;
+  getCircleSizeByPoints = function(points){
+    return points * 2;
+  }
 
   Template.playerList.helpers({
     players: function() {
@@ -8,7 +12,23 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.playerTableRow.events({
+  Template.player.helpers({
+    circleSize: function() {
+      return (getCircleSizeByPoints(this.points) + STROKE_WIDTH * 2) + 'px'
+    },
+    circleCx: function(){
+      return ((getCircleSizeByPoints(this.points) + STROKE_WIDTH * 2) / 2) + 'px'
+    },
+    circleCy: function(){
+      return ((getCircleSizeByPoints(this.points) + STROKE_WIDTH * 2) / 2) + 'px'
+    },
+    circleRadius: function(){
+      return ((getCircleSizeByPoints(this.points)) / 2) + 'px'
+    },
+    strokeWidth: function() { return STROKE_WIDTH + 'px'; }
+  })
+
+  Template.player.events({
     'click button': function(evt, tpl) {
       Players.update({_id: this._id}, {$inc: {points: 1}});
     }

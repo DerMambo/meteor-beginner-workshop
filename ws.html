@@ -9,29 +9,22 @@
 <template name="playerList">
   <h1>All Players</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Points</th>
-        <th>Options</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each players}}
-      {{> playerTableRow}}
-      {{/each}}
-    </tbody>
-  </table>
+  {{#each players}}
+  <div class="row">
+    {{>player}}
+  </div>
+  {{/each}}
 
-  <span style="color: {{color}};">{{greeting}}</span>
-  <input type="button" value="Click" />
 </template>
 
-<template name="playerTableRow">
-  <tr>
-    <td>{{name}}</td>
-    <td>{{points}}</td>
-    <td><button>+ Point</button></td>
-  </tr>
+<template name="player">
+  <div class="col-xs-3">
+    <h4>{{name}} <small>({{points}})</small></h4>
+    <td><button class="btn btn-default">+ Point</button></td>
+  </div>
+  <div class="col-xs-9">
+    <svg width="{{circleSize}}" height="{{circleSize}}">
+      <circle cx="{{circleCx}}" cy="{{circleCy}}" r="{{circleRadius}}" stroke="green" stroke-width="{{strokeWidth}}" fill="yellow" /> 
+    </svg>
+  </div>
 </template>
