@@ -7,13 +7,15 @@
 </body>
 
 <template name="playerList">
-  <h1>All Players</h1>
+  <div class="container">
+    <h1>All Players</h1>
 
-  {{#each players}}
-  <div class="row">
-    {{>player}}
+    {{#each players}}
+    <div class="row">
+      {{>player}}
+    </div>
+    {{/each}}
   </div>
-  {{/each}}
 
 </template>
 
