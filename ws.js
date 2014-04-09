@@ -1,6 +1,13 @@
 if (Meteor.isClient) {
+  Session.setDefault('name', 'Anonymus');
+  Session.setDefault('color', 'black');
+
   Template.hello.greeting = function () {
-    return "Welcome to ws.";
+    return 'Hello ' + Session.get('greet');
+  };
+
+  Template.hello.color = function() {
+    return Session.get('color');
   };
 
   Template.hello.events({
